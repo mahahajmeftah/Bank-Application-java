@@ -27,10 +27,12 @@ public class TestsDossierBancaire {
 		public void testRenumerer() 
 		{
 			DossierBancaire dossier=new DossierBancaire();
-			dossier.deposer(100);
+			dossier.deposer(100);			
 			dossier.remunerer();
-			double solde_expected = 100*(1+3.2);
+			double solde_expected = 101.92;
+			System.out.println(dossier.get_solde());
 			assertEquals(solde_expected,dossier.get_solde(),0.001); //voir documentation en ligne sur assertions Junit 
 		}
+	
 
 }
