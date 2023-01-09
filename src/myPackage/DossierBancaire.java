@@ -13,7 +13,7 @@ public class DossierBancaire {
     	cc =new CompteCourant(m_solde);
     	ep = new CompteEpargne(m_solde); 
     }
-
+//deposeer 
     public void deposer(double value) {
     	cc.deposerC(value*0.4);
     	ep.deposerE(value*0.6);
