@@ -27,6 +27,10 @@ public class DossierBancaire {
     	ep.renumererE();
     	
     }
+    public void retirer(double valeur)throws Exception {
+    	cc.retirerC(valeur);
+    }
+    
 	
     
 }

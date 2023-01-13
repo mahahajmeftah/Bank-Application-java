@@ -10,6 +10,16 @@ public class CompteCourant extends CompteBancaire {
 		public void deposerC(double valeur) {
 	        setSolde(getSolde()+valeur);
 	    }
+		
+		public void retirerC(double valeur) throws Exception {
+			if (valeur > getSolde()) {
+				throw new Exception("Insufficient funds");
+			}
+			setSolde(getSolde() - valeur);
+		
+
+			
+		}
 
 
 	    
