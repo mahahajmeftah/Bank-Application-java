@@ -17,6 +17,8 @@ public class GUI  implements ActionListener
 	private JTextField m_saisie_depot;
 	private JTextField m_display_solde;
 	private JButton m_remunerer;
+	private JButton m_retirer;
+	private JTextField m_retirer_m;
 	// Constructeur
     public GUI(DossierBancaire d)
     {
@@ -27,27 +29,31 @@ public class GUI  implements ActionListener
         m_saisie_depot = new JTextField (20);
         m_saisie_depot.addActionListener(this);
         
-        //Element declenchement remuneration
+     // Element declenchement retrait
+        m_retirer_m = new JTextField (20);
+        m_retirer_m.addActionListener(this);
+      //Element declenchement remuneration
         m_remunerer = new JButton("OK");
         m_remunerer.addActionListener(this);
-
-        
     	//Element affichage solde
         m_display_solde = new JTextField (20);
         m_display_solde.setEditable(false); //Pour eviter d'ecrire
         m_display_solde.setText(Double.toString(m_dossier.get_solde()));
+     
         
         
         //Initialisation de la fenetre generale
         JFrame frame = new JFrame("Editeur dossier bancaire");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //Geometrie de repartition des elements graphiques
-        frame.setLayout(new GridLayout(3,2)); //3 lignes and 2 columns
+        frame.setLayout(new GridLayout(4,2)); //3 lignes and 2 columns
         //First line
         frame.getContentPane().add(new JLabel("Depot"));
         frame.getContentPane().add(m_saisie_depot);
-        frame.getContentPane().add(new JLabel("Remunerer"));
-        frame.getContentPane().add(m_remunerer);        
+        frame.getContentPane().add(new JLabel("Retrait"));
+        frame.getContentPane().add(m_retirer_m);   
+        frame.getContentPane().add(new JLabel("Remunerer"));   
+        frame.getContentPane().add(m_remunerer);
         frame.getContentPane().add(new JLabel("Solde"));
         frame.getContentPane().add(m_display_solde);
         frame.pack(); //Causes this Window to be sized to fit the preferred size and layouts of its subcomponents.
@@ -62,6 +68,16 @@ public class GUI  implements ActionListener
     		float depot_value=Float.parseFloat(m_saisie_depot.getText());
     		m_dossier.deposer(depot_value);
     		m_saisie_depot.setText("");
+    	}
+    	if( e.getSource() == m_retirer_m )
+    	{
+    	 float value=Float.parseFloat(m_retirer_m.getText());
+    		try {
+				m_dossier.retirer(value);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			};
     	}
     	if( e.getSource() == m_remunerer )
     	{
